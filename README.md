@@ -6,7 +6,7 @@
 
 > A curated list of the **Greatest Of All Time (G.O.A.T.)** tools, engines, stealth browsers, TLS impersonators, and reverse-engineering utilities for modern web scraping.
 
-Modern websites deploy sophisticated anti-bot protections: TLS fingerprinting (JA3/JA4), HTTP/2 frame analysis, Canvas/WebGL probing, behavioral analysis, and Cloudflare Turnstile challenges. Standard scrapers running stock `requests` or vanilla Puppeteer get blocked instantly.
+Modern websites deploy sophisticated anti-bot protections: TLS fingerprinting (JA3/JA4), HTTP/2 frame analysis, Canvas/WebGL probing, behavioral mouse tracking, and Cloudflare Turnstile challenges. Standard scrapers running stock `requests` or vanilla Puppeteer get blocked instantly.
 
 This list tracks the tools that actually work against modern defenses.
 
@@ -17,13 +17,15 @@ This list tracks the tools that actually work against modern defenses.
 - [Full-Scale Frameworks & Spiders](#full-scale-frameworks--spiders)
 - [HTTP Clients & TLS/JA3 Impersonation](#http-clients--tlsja3-impersonation)
 - [Stealth Browsers & Anti-Detect Automation](#stealth-browsers--anti-detect-automation)
+- [Next-Gen Lightweight Headless Engines](#next-gen-lightweight-headless-engines)
+- [Human Behavior Emulation & Anti-Profiling](#human-behavior-emulation--anti-profiling)
 - [AI-Native Scraping & LLM Markdown Extractors](#ai-native-scraping--llm-markdown-extractors)
 - [Parsers & Element Extractors](#parsers--element-extractors)
 - [Fingerprint Generation & Spoofing](#fingerprint-generation--spoofing)
 - [Anti-Bot Bypasses & Solvers](#anti-bot-bypasses--solvers)
-- [Proxy Management & Traffic Routing](#proxy-management--traffic-routing)
+- [Proxy Management & Crawler Utilities](#proxy-management--crawler-utilities)
 - [DevTools, Interception & Reverse Engineering](#devtools-interception--reverse-engineering)
-- [Testbenches & Bot Detectors](#testbenches--bot-detectors)
+- [Testbenches, Benchmarks & WAF Research](#testbenches-benchmarks--waf-research)
 
 ---
 
@@ -44,9 +46,11 @@ This list tracks the tools that actually work against modern defenses.
 *Clients that mimic real browser TLS handshakes (ciphers, extensions, curves) and HTTP/2 settings to bypass network-level fingerprinting.*
 
 - [curl-impersonate](https://github.com/lexiforest/curl-impersonate) (C) - A modified `curl` build that mimics the TLS and HTTP/2 fingerprints of major browsers (Chrome, Edge, Safari, Firefox) at the packet level.
-- [curl-cffi](https://github.com/lexiforest/curl-cffi) (Python) - Python bindings for curl-impersonate. Drop-in replacement for `requests` or `httpx` with native JA3/JA4 browser impersonation and HTTP/3 support.
+- [curl-cffi](https://github.com/lexiforest/curl_cffi) (Python) - Python bindings for curl-impersonate. Drop-in replacement for `requests` or `httpx` with native JA3/JA4 browser impersonation and HTTP/3 support.
+- [SURF](https://github.com/enetx/surf) (Go) - Advanced Go HTTP client featuring real Chrome/Firefox browser impersonation, HTTP/3, TLS/JA3/JA4 fingerprinting, and proxy rotation.
 - [tls-client](https://github.com/bogdanfinn/tls-client) (Go) - Advanced HTTP library for Go built on uTLS to impersonate browser TLS handshakes and HTTP/2 fingerprinting.
 - [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) (JS/TS / Go) - TLS fingerprint spoofer for Node.js and Go. Bypasses TLS fingerprint verification on Cloudflare, Akamai, and DataDome.
+- [Maera](https://github.com/Xetera/maera) (Rust) - High-throughput Rust scraping client packaged with modern Chrome TLS fingerprints and connection primitives.
 - [HTTPX](https://github.com/encode/httpx) (Python) - Next-generation HTTP client with sync and async APIs, HTTP/2 support, and strict connection pooling.
 
 ---
@@ -55,12 +59,34 @@ This list tracks the tools that actually work against modern defenses.
 
 *Headless automation frameworks patched to remove DevTools leaks, CDC flags, and runtime automation artifacts.*
 
-- [Patchright](https://github.com/kaliiiiiiiiii/patchright) (Python / JS) - Undetected Playwright fork. Patches runtime CDP leaks, `Runtime.enable`, and DevTools detection vectors directly in browser binaries.
+- [Patchright](https://github.com/kaliiiiiiiiii/patchright) (Python / JS) - Undetected Playwright fork. Patches runtime CDP leaks, `Runtime.enable`, and DevTools detection vectors directly in browser binaries. Ports available for [Go](https://github.com/status403com/patchright-go) and [Node.js](https://github.com/najibyahya/patchright-nodejs).
 - [Camoufox](https://github.com/daijro/camoufox) (C++ / Python) - Anti-detect browser engine built directly into a customized Firefox build. Injects realistic hardware noise, fonts, and WebGL parameters at the C++ level.
 - [DrissionPage](https://github.com/g1879/DrissionPage) (Python) - Hybrid driver combining requests and browser automation. Can switch seamlessly between HTTP requests and DOM control without webdriver signatures.
 - [nodriver](https://github.com/ultrafunkamsterdam/nodriver) (Python) - Successor to undetected-chromedriver. Asynchronous, native Chrome controller communicating directly via CDP without `chromedriver`.
+- [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver) (Python) - The pioneering automated Chromedriver patcher that prevents bot detection triggers in Selenium.
+- [puppeteer-real-browser](https://github.com/ZFC-Digital/puppeteer-real-browser) (JavaScript) - Modified Puppeteer wrapper designed to bypass Cloudflare Turnstile and challenge checks automatically.
 - [rebrowser-patches](https://github.com/rebrowser/rebrowser-patches) (Node.js) - Open-source patch suite for Puppeteer and Playwright to eliminate `Runtime.Enable` leaks and bypass modern bot detection engines.
 - [puppeteer-extra-plugin-stealth](https://github.com/berstend/puppeteer-extra/tree/master/packages/puppeteer-extra-plugin-stealth) (JS) - The classic stealth plugin for Puppeteer that established evasions for `navigator.webdriver`, chrome runtime, permissions, and plugin arrays.
+
+---
+
+## Next-Gen Lightweight Headless Engines
+
+*Modern headless browser engines designed specifically for AI agents and web scraping without full Chromium bloat.*
+
+- [Lightpanda](https://github.com/lightpanda-io/browser) (Zig) - Ultra-lightweight headless browser written in Zig, built from the ground up for AI agents and scraping. Executes scripts with minimal memory overhead and near-zero startup time.
+- [Obscura](https://github.com/h4ckf0r0day/obscura) (Rust) - High-performance headless browser built in Rust specifically designed for autonomous web scraping and AI workflows.
+- [Clearcote Browser](https://github.com/clearcotelabs/clearcote-browser) (Python / C++) - De-Googled, open-source stealth Chromium build with engine-level fingerprint randomization.
+
+---
+
+## Human Behavior Emulation & Anti-Profiling
+
+*Tools simulating organic user physics, realistic cursor movements, and disabling anti-bot traps.*
+
+- [Ghost-Cursor](https://github.com/Xetera/ghost-cursor) (TypeScript) - Generates realistic, human-like mouse paths using Bézier curves to defeat behavioral anti-bot mouse tracking.
+- [Undebugged-Firefox](https://github.com/Xetera/undebugged-firefox) (Patch) - Customized Firefox patch that disables debugger traps used by JavaScript obfuscators and anti-bot scripts.
+- [Puppeteer-AFP](https://github.com/pavlealeksic/puppeteer-afp) (TypeScript) - Anti-fingerprinting solution preventing websites from profiling Puppeteer instances.
 
 ---
 
@@ -108,10 +134,12 @@ This list tracks the tools that actually work against modern defenses.
 
 ---
 
-## Proxy Management & Traffic Routing
+## Proxy Management & Crawler Utilities
 
-*Proxy managers, connection cyclers, and traffic rotators.*
+*Proxy managers, connection cyclers, traffic rotators, and URL cleaners.*
 
+- [Uro](https://github.com/s0md3v/uro) (Python) - URL list cleaner that removes duplicates, redundant query parameters, and avoids crawler traps.
+- [Proxy-Scraper-Checker](https://github.com/monosans/proxy-scraper-checker) (Rust) - High-speed proxy scraper and live health validator written in Rust supporting HTTP, SOCKS4, and SOCKS5.
 - [proxy-chain](https://github.com/apify/proxy-chain) (Node.js) - Node.js proxy server with support for SSL, authentication, upstream proxy chaining, and custom IP rotation logic.
 - [Mitmproxy](https://github.com/mitmproxy/mitmproxy) (Python) - An interactive SSL/TLS-capable intercepting HTTP proxy for monitoring, modifying, and replaying web traffic.
 - [Mubeng](https://github.com/kitabisa/mubeng) (Go) - An automated IP rotator and proxy checker that runs as a local proxy server and rotates outbound IP on every request.
@@ -130,10 +158,12 @@ This list tracks the tools that actually work against modern defenses.
 
 ---
 
-## Testbenches & Bot Detectors
+## Testbenches, Benchmarks & WAF Research
 
-*Benchmark websites to test your scraper's stealth score, fingerprint leaks, and anti-bot evasions.*
+*Benchmark suites and research materials to test your scraper's stealth score, fingerprint leaks, and anti-bot evasions.*
 
+- [Browsers-Benchmark](https://github.com/techinz/browsers-benchmark) (Python) - Automated benchmark suite comparing bypass rates, execution speeds, and stealth scores across major browser automation engines.
+- [CFResearch](https://github.com/scaredos/cfresearch) (Research) - Technical documentation and research notes covering Cloudflare's bot management internals and challenge loops.
 - [CreepJS](https://github.com/abrahamjuliot/creepjs) ([creepjs-api](https://abrahamjuliot.github.io/creepjs/)) - The gold standard test for browser fingerprint consistency, worker leaks, and headless tells.
 - [Bot Sannysoft](https://bot.sannysoft.com/) - Classic detection testbench verifying `webdriver` properties, Chrome plugins, user-agent consistency, and permissions.
 - [BrowserScan](https://www.browserscan.net/) - Tests IP reputation, WebRTC leaks, Canvas noise, and hardware consistency.
