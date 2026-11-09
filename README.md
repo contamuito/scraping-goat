@@ -162,6 +162,7 @@ This list tracks the tools that actually work against modern defenses.
 
 *Benchmark suites and research materials to test your scraper's stealth score, fingerprint leaks, and anti-bot evasions.*
 
+- [DataDome VM Research](https://github.com/contamuito/datadome-vm-research) - Forensic analysis and reverse engineering of DataDome's JavaScript VM: bytecode disassembler fix (0 UNKs), 117 decompiled closures, offline telemetry decryptor, and clean-room runner.
 - [Browsers-Benchmark](https://github.com/techinz/browsers-benchmark) (Python) - Automated benchmark suite comparing bypass rates, execution speeds, and stealth scores across major browser automation engines.
 - [CFResearch](https://github.com/scaredos/cfresearch) (Research) - Technical documentation and research notes covering Cloudflare's bot management internals and challenge loops.
 - [CreepJS](https://github.com/abrahamjuliot/creepjs) ([creepjs-api](https://abrahamjuliot.github.io/creepjs/)) - The gold standard test for browser fingerprint consistency, worker leaks, and headless tells.
