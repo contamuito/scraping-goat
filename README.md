@@ -52,6 +52,7 @@ This list tracks the tools that actually work against modern defenses.
 - [CycleTLS](https://github.com/Danny-Dasilva/CycleTLS) (JS/TS / Go) - TLS fingerprint spoofer for Node.js and Go. Bypasses TLS fingerprint verification on Cloudflare, Akamai, and DataDome.
 - [Maera](https://github.com/Xetera/maera) (Rust) - High-throughput Rust scraping client packaged with modern Chrome TLS fingerprints and connection primitives.
 - [HTTPX](https://github.com/encode/httpx) (Python) - Next-generation HTTP client with sync and async APIs, HTTP/2 support, and strict connection pooling.
+- [browsersmith](https://github.com/jverneuer/browsersmith) (JS/TS / Node) - Pure-TypeScript HTTP stack with browser-identical TLS (JA3/JA4), HTTP/2 SETTINGS and header-order fingerprints driven by Chrome/Firefox/Safari profiles; highly experimental HTTP/3 and SOCKS5 support.
 
 ---
 
